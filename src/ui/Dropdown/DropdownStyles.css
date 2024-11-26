@@ -1,0 +1,64 @@
+.dropdownWrapper {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdownContainer {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+
+.open {
+  animation: openAnimation 0.3s ease;
+}
+
+.closed {
+  animation: closeAnimation 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.dropdownItem {
+  padding: 10px 10px;
+  background-color: white;
+  transition: all 0.3s ease;
+  display: grid;
+  grid-template-columns: 1fr 3fr 20px;
+  cursor: pointer;
+  column-gap: 4px;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  & > span {
+    font-size: 11px;
+  }
+}
+
+@keyframes openAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes closeAnimation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
