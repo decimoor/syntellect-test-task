@@ -46,7 +46,14 @@ export default class AutocompleteVM {
 
     const results = await getCountryByName(this.inputValue);
     runInAction(() => {
-      this.suggestions = results.slice(0, this.maxSuggestions);
+      const uniqueResults = results.filter(
+        (item, index, self) =>
+          index ===
+          self.findIndex(
+            (t) => t.name === item.name && t.fullName === item.fullName
+          )
+      );
+      this.suggestions = uniqueResults.slice(0, this.maxSuggestions);
     });
   };
 

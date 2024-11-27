@@ -12,3 +12,22 @@
 .autocomplete {
   min-width: 200px;
 }
+
+.app {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  gap: 20px;
+  align-items: center;
+}
+
+.testContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #000;
+  width: 500px;
+}
