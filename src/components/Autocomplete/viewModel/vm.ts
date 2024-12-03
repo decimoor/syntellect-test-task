@@ -7,6 +7,7 @@ export default class AutocompleteVM {
   isOpen: boolean = false;
   maxSuggestions: number;
   private debounceTimeout: NodeJS.Timeout | null = null;
+  private currentRequestId: number = 0;
 
   constructor(maxSuggestions: number = 3) {
     this.maxSuggestions = maxSuggestions;
@@ -33,7 +34,7 @@ export default class AutocompleteVM {
 
     this.debounceTimeout = setTimeout(() => {
       this.fetchSuggestions();
-    }, 300);
+    }, 150);
   };
 
   private fetchSuggestions = async () => {
@@ -44,7 +45,13 @@ export default class AutocompleteVM {
       return;
     }
 
+    const requestId = ++this.currentRequestId;
     const results = await getCountryByName(this.inputValue);
+
+    if (requestId !== this.currentRequestId) {
+      return;
+    }
+
     runInAction(() => {
       const uniqueResults = results.filter(
         (item, index, self) =>
